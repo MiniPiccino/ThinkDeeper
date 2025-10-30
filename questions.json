@@ -1,0 +1,124 @@
+{
+  "weeks": [
+    {
+      "theme": "Week 1 — The Stoic Mind",
+      "questions": [
+        "What does it truly mean to control what you can and accept what you can’t?",
+        "Can peace of mind exist without discomfort?",
+        "How does discipline create freedom?",
+        "Why do we suffer more in imagination than in reality?",
+        "Is emotion weakness or wisdom?",
+        "Can you be ambitious and tranquil at the same time?",
+        "What’s something painful that made you stronger?"
+      ]
+    },
+    {
+      "theme": "Week 2 — Curiosity and Knowledge",
+      "questions": [
+        "What’s something you believed as a child that you no longer do?",
+        "Is curiosity a virtue or a distraction?",
+        "Can ignorance ever be beneficial?",
+        "How do you know when you truly understand something?",
+        "Why do humans crave answers even when they hurt?",
+        "What’s the difference between knowledge and wisdom?",
+        "Can curiosity exist without humility?"
+      ]
+    },
+    {
+      "theme": "Week 3 — Freedom and Slavery",
+      "questions": [
+        "What does it mean to be free in a modern world?",
+        "Can a person be enslaved by comfort?",
+        "Is freedom the absence of control or the mastery of self?",
+        "Would you give up freedom for security?",
+        "What are invisible forms of slavery today?",
+        "Is total freedom even desirable?",
+        "When have you felt most free?"
+      ]
+    },
+    {
+      "theme": "Week 4 — Time and Mortality",
+      "questions": [
+        "What would you do if you knew you had one year to live?",
+        "Why do we waste time even when we know it’s finite?",
+        "Can death give life meaning?",
+        "What is a moment worth remembering?",
+        "Why do some days feel longer than others?",
+        "Would immortality be a gift or a curse?",
+        "How do you measure a life well lived?"
+      ]
+    },
+    {
+      "theme": "Week 5 — Truth and Lies",
+      "questions": [
+        "Is honesty always the right choice?",
+        "Can a lie ever be moral?",
+        "Why do people lie to themselves?",
+        "Does truth depend on perspective?",
+        "What’s the cost of complete transparency?",
+        "Is self-deception necessary for happiness?",
+        "Would you rather know an ugly truth or a comforting lie?"
+      ]
+    },
+    {
+      "theme": "Week 6 — Power and Corruption",
+      "questions": [
+        "Does power reveal character or change it?",
+        "Why do people seek control over others?",
+        "Is influence more powerful than authority?",
+        "Can someone be powerful without corrupting themselves?",
+        "Why does power attract the wrong people?",
+        "Is morality a luxury of the powerless?",
+        "When have you seen power used wisely?"
+      ]
+    },
+    {
+      "theme": "Week 7 — Technology and Humanity",
+      "questions": [
+        "Are we becoming smarter or lazier through technology?",
+        "Can artificial intelligence ever be conscious?",
+        "Do we control our devices, or do they control us?",
+        "Is digital identity more real than physical presence?",
+        "What human skills are we losing to automation?",
+        "Should emotions be programmable?",
+        "What does it mean to be human in a digital age?"
+      ]
+    },
+    {
+      "theme": "Week 8 — Empathy and Understanding",
+      "questions": [
+        "What’s the difference between empathy and sympathy?",
+        "Can empathy be learned?",
+        "Why is it easier to judge than to understand?",
+        "Does empathy make you vulnerable or strong?",
+        "Can too much empathy cloud judgment?",
+        "How does culture shape compassion?",
+        "When was the last time you truly understood someone else’s pain?"
+      ]
+    },
+    {
+      "theme": "Week 9 — Creativity and Art",
+      "questions": [
+        "Is art necessary for survival?",
+        "Can creativity be taught?",
+        "Why do humans create even when they suffer?",
+        "Is beauty universal or subjective?",
+        "Can chaos inspire creativity?",
+        "Does originality still exist?",
+        "What’s the difference between art and entertainment?"
+      ]
+    },
+    {
+      "theme": "Week 10 — Society and the Individual",
+      "questions": [
+        "Do you owe anything to society?",
+        "Can one person change the world?",
+        "Why do we follow norms even when we disagree?",
+        "Is rebellion necessary for progress?",
+        "Where’s the line between selfishness and self-care?",
+        "Can community exist without conformity?",
+        "Who defines what’s ‘normal’?"
+      ]
+    }
+  ]
+}
