@@ -8,6 +8,7 @@ from google.oauth2 import service_account
 from openai import OpenAI
 from dotenv import load_dotenv
 from pathlib import Path
+import streamlit.components.v1 as components
 
 
 load_dotenv()
@@ -127,14 +128,14 @@ st.subheader("Train your reasoning every day")
 
 st.markdown(f"#### Theme — {st.session_state['week_theme']}")
 
+def _start_session():
+    st.session_state["started"] = True
+    st.session_state["start_time"] = datetime.datetime.now().timestamp()
+    st.session_state["user_answer"] = ""
+
 if not st.session_state["started"]:
     st.info("Press Start when you're ready. The question will appear and the timer will begin.")
-    if st.button("▶️ Start"):
-        # start and mark as started
-        st.session_state["started"] = True
-        st.session_state["start_time"] = datetime.datetime.now().timestamp()
-        # ensure a fresh answer field
-        st.session_state["user_answer"] = ""
+    st.button("🚀 Start Thinking", on_click=_start_session)
 else:
     # Once started: show question and keep Start button gone
     question = st.session_state["question"]
@@ -148,15 +149,27 @@ else:
     if remaining == 0:
         st.warning("⏰ Time’s up! You can still submit your answer.")
     else:
-        # sleep briefly then rerun to update the timer. The text area uses a key so its content persists.
-        time.sleep(1)
-        # Use new st.query_params API to update a timestamp param and force a rerun/refresh.
-        # Assign a dict of lists as query params (string values).
-        try:
-            st.query_params = {"_timer": [str(int(time.time()))]}
-        except Exception:
-            # Fallback: set a session_state flag to force UI change if st.query_params isn't available
-            st.session_state["_timer_tick"] = st.session_state.get("_timer_tick", 0) + 1
+        # Client-side reload every 10 seconds to update the timer (no time.sleep, no deprecated APIs)
+        components.html(
+            """
+            <script>
+              (function(){
+                try {
+                  const params = new URLSearchParams(window.location.search);
+                  params.set('_timer', Date.now());
+                  const newUrl = window.location.pathname + '?' + params.toString();
+                  window.history.replaceState(null, '', newUrl);
+                  // reload after 10 seconds to trigger Streamlit rerun and update the timer
+                  setTimeout(function(){ location.reload(); }, 10000);
+                } catch(e) {
+                  // fallback: still reload after 10s
+                  setTimeout(function(){ location.reload(); }, 10000);
+                }
+              })();
+            </script>
+            """,
+            height=0,
+        )
     # Answer input + submission — persist using key tied to session_state
     user_answer = st.text_area("💬 Your Answer", height=150, placeholder="Type your thoughts here...", key="user_answer")
 
