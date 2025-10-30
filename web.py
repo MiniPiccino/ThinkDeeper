@@ -7,7 +7,6 @@ import gspread
 from google.oauth2 import service_account
 from openai import OpenAI
 from dotenv import load_dotenv
-import gspread
 from pathlib import Path
 
 
@@ -23,15 +22,19 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 # ----------------------------
 # GOOGLE SHEETS CONNECTION
 # ----------------------------
-scope = ["https://www.googleapis.com/auth/spreadsheets"]
-creds = service_account.Credentials.from_service_account_info(
-    st.secrets["google_service_account"], scopes=scope
-)
-client_sheets = gspread.authorize(creds)
-
-# Replace with your actual Sheet ID
-SHEET_ID = "1t7YlpY8JsMrLvfB-wM7URaT1l6C4TlVa5bRC2VAfdHc"
-sheet = client_sheets.open_by_key(SHEET_ID).sheet1
+try:
+    scope = ["https://www.googleapis.com/auth/spreadsheets"]
+    creds = service_account.Credentials.from_service_account_info(
+        st.secrets["google_service_account"], scopes=scope
+    )
+    client_sheets = gspread.authorize(creds)
+    
+    # Replace with your actual Sheet ID
+    SHEET_ID = "1t7YlpY8JsMrLvfB-wM7URaT1l6C4TlVa5bRC2VAfdHc"
+    sheet = client_sheets.open_by_key(SHEET_ID).sheet1
+except Exception as e:
+    st.error(f"Failed to connect to Google Sheets: {str(e)}")
+    sheet = None
 
 # ----------------------------
 # DAILY QUESTION LOADING
@@ -147,13 +150,13 @@ else:
     else:
         # sleep briefly then rerun to update the timer. The text area uses a key so its content persists.
         time.sleep(1)
-        if hasattr(st, "experimental_set_query_params"):
-            # update a timestamp param to force a rerun / refresh
-            st.experimental_set_query_params(_timer=int(time.time()))
-        else:
-            # best-effort fallback: set a session_state flag to force UI change
+        # Use new st.query_params API to update a timestamp param and force a rerun/refresh.
+        # Assign a dict of lists as query params (string values).
+        try:
+            st.query_params = {"_timer": [str(int(time.time()))]}
+        except Exception:
+            # Fallback: set a session_state flag to force UI change if st.query_params isn't available
             st.session_state["_timer_tick"] = st.session_state.get("_timer_tick", 0) + 1
-
     # Answer input + submission — persist using key tied to session_state
     user_answer = st.text_area("💬 Your Answer", height=150, placeholder="Type your thoughts here...", key="user_answer")
 
