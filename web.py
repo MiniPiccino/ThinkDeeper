@@ -181,16 +181,24 @@ else:
             height=0,
         )
 
-    # Answer box
-    st.session_state["user_answer"] = st.text_area(
-        "💬 Your Answer", height=150, placeholder="Type your thoughts here...", key="user_answer"
+    # Answer box — use a local variable for widget value
+    user_input = st.text_area(
+        "💬 Your Answer", 
+        value=st.session_state.get("user_answer", ""), 
+        height=150, 
+        placeholder="Type your thoughts here...", 
+        key="answer_box"
     )
+
+    # When text changes, update session_state manually
+    st.session_state["user_answer"] = user_input
 
     # Submit
     if st.button("📤 Submit Answer"):
         if st.session_state["user_answer"].strip() == "":
             st.warning("Please write something before submitting.")
         else:
+            question = st.session_state["question"]
             feedback, xp = evaluate_answer(st.session_state["user_answer"], question)
             st.session_state["feedback"] = feedback
             st.session_state["xp_total"] += xp
